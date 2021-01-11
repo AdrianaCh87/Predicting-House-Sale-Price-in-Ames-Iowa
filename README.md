@@ -1,49 +1,57 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Housing Market in Ames, Iowa
+# <b>Predicting House Sale Price in Ames, Iowa
 
-# Table of Contents
+## Table of Contents
 
+* [Executive Summary](#executive-summary)
 * [Problem Statement](#problem-statement)
-  * [Questions](#questions)
-* [Datasets](#datasets)
-  * [Data Dictionary](#data-dictionary)
+* [Methodology](#methodology)
+  * [Datasets](#dataset)
+  * [Data Cleaning](#data-cleaning)
 * [Data Analysis Summary](#findings)
-* [Results](#key-takeaways)
-* [Recommendations and Next Steps](#recommendations)
+* [Preprocessing and Modeling](#preprocessing-and-modeling)
+* [Results](#results)
+* [Conclusions](#conclusions)
 
-# Problem Statement
-To create a regression model based on the Ames Housing Dataset to predict the price of a house at sale
+## Executive summary
+An executive summary is included [here](https://docs.google.com/document/d/1GCIDDshR-uh4fiQK0YoMwQYb89VQfxB9_7W2y-P1trg/edit?usp=sharing).
 
-## Questions
-1. What are the stronger predictors for house sale price in Ames, Iowa
+The Jupyter notebooks for this project are listed below in order of execution.
 
-Also, these questions came up during data analysis:
+1. 01_data_collection_and_cleaning.ipynb
+2. 02_exploratory_data_analysis.ipynb
+3. 03_feature_engineering_and_preprocess.ipynb
+4. 04_modeling_and_model_evaluation.ipynb
+5. 05_production_model.ipynb
 
-2. Which zonings have the highest/lowest average of Sale Price
+## Problem Statement
+To create a regression model to predict the sale price of a house in Ames, Iowa. This model must have a root mean squared error below 25,000 and have less than 40 features.
 
-3. What is the average price of houses in each Ames neighborhood
+Additionally, the following questions were explored:
 
-4. Do houses with a basement have higher sale price
+1. What are the stronger predictors for house sale price in Ames, Iowa?
+2. Which zonings have the highest/lowest average of Sale Price?
+3. What is the average price of houses in each Ames neighborhood?
+4. Do houses with a basement have higher sale price?
+5. Did prices go down during the Housing crash of 2008?
+6. Do houses with a fireplace have a higher sale price?
 
-5. Did prices go down during the Housing crash market
 
-6. Do houses with a fireplace have a higher sale price
+## Methodology
+
+1. Dataset
+
+The dataset used in this analysis is from the Ames Assessor’s Office used in computing assessed values for individual residential properties sold in Ames, IA. The data is from 2006 to 2010. There are 2930 observations, and 82 features (categorical and numerical).
+The data dictionary is found [here](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt).
+
+2. Data Cleaning
+
+Some features were removed from the model because of low correlation to target, collinearity with other features, or because they were combined with other similar features.
+
+A few null values were removed from the dataset (less than 5)
+Two outliers were removed from the dataset
 
 
-
-# Datasets
-
-* Data set contains information from the Ames Assessor’s Office used in computing assessed values for individual residential properties sold in Ames, IA
-* Data from 2006 to 2010
-* 2930 observations
-* 82 features: Categorical and numerical
-* Some features were removed from the model because of low correlation to target, collinearity with other features, or because they were combined with other similar features.
-* A few null values were removed from the dataset (less than 5)
-* Two outliers were removed from the dataset
-
-## Data Dictionary
-[Data dictionary for Ames Housing Data](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt)
-
-# Data Analysis Summary
+3. Data Analysis Summary
 * This analysis was conducted using multilinear regression
 * Categorical features were hot coded
 * Polynomial features were explored but it was determined not to improve the model metrics therefore, it was not used in the final model.
@@ -55,7 +63,7 @@ Models used: linear regression, Lasso, Ridge, Lasso CV.
 
 # Results
 
-These were some of the features that were chosen by the model as good predictors for Housing Sale Price:
+The features that showed to be good good predictors for Housing Sale Price:
 
 1. Ground Living Area
 2. Total Basement Square Foot
@@ -65,8 +73,9 @@ These were some of the features that were chosen by the model as good predictors
 6. Neighborhood
 7. Garage Area
 
-Lasso CV Regression Model metrics:
+Model results:
 
+Lasso CV Regression Model metrics:
 * R2 Score: 0.9071028931402941
 * MSE: 590823281.753886
 * RMSE: 24306.85668188888
@@ -79,10 +88,8 @@ The Lasso coefficient for each of the features is interpreted as:
 An increase in one standard deviation of 'Feature', means an increase by ‘coef_value’ of the sale price (holding the rest of the features constant.) Example:
 An increase in one standard deviation of Ground Living area, means an increase by $24,787.594384 of the sale price (holding the rest of the features constant.)
 
-See PPT for list of coefficients.
 
-
-# Recommendations and Next Steps
+# Conclusions
 1. Homeowners can increase the values of their properties by improving the quality of their kitchen and/or exterior covering of the house
 2. Houses in these neighborhoods would be a good investment: Stone Brook, Northridge Heights, Northridge, Green Hills
 3. This model is automated to clean and process data, and choose the best predictors for house pricing, therefore it can be used in other cities.
