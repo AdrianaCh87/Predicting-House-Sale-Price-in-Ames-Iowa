@@ -128,8 +128,8 @@ As the number of rooms increases so does the sale price up to a point (i.e. 11 r
 
 - The Lasso coefficient for each of the features is interpreted as:
 
-- An increase in one standard deviation of 'Feature', means an increase by ‘coef_value’ of the sale price (holding the rest of the features constant.) Example:
-- An increase in one standard deviation of Ground Living area, means an increase by $24,787.594384 of the sale price (holding the rest of the features constant.)
+ An increase in one standard deviation of 'Feature', means an increase by ‘coef_value’ of the sale price (holding the rest of the features constant.) 
+ Example: An increase in one standard deviation of Ground Living area, means an increase by $24,787.594384 of the sale price (holding the rest of the features constant.)
 
 
 # Conclusions
