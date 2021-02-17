@@ -3,7 +3,6 @@
 
 ## Table of Contents
 
-* [Executive Summary](#executive-summary)
 * [Problem Statement](#problem-statement)
 * [Data Collection](#data-collection)
 * [Data Cleaning and Preprocessing](#data-cleaning-and-Preprocessing)
@@ -12,8 +11,6 @@
 * [Results](#results)
 * [Conclusions and Recommendations](#conclusions-and-recommendations)
 
-## Executive summary
-An executive summary for this project is included [here](https://docs.google.com/document/d/1GCIDDshR-uh4fiQK0YoMwQYb89VQfxB9_7W2y-P1trg/edit?usp=sharing).
 
 This project was completed in Python using Jupyter notebooks. Below is the order of execution:
 
