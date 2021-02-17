@@ -1,4 +1,4 @@
-# <b>Predicting the House Sale Prices in Ames, Iowa using a Regression Model
+# <b>Predicting House Sale Prices in Ames, Iowa using a Regression Model
 
 
 ## Table of Contents
@@ -25,12 +25,12 @@ This project was completed in Python using Jupyter notebooks. Below is the order
 
 ## Problem Statement
 To create a regression model to predict the sale price of a house in Ames, Iowa.
-This model must have a root mean squared error below 25,000 and have less than 40 features.
 
 Additionally, the following questions were explored:
 
 1. What are the stronger predictors for house sale value in Ames, Iowa?
 2. What is the average house price in each Ames neighborhood?
+3. Does the number of houses sold in Ames, IA vary across year, or seasons?
 
 
 ## Data Collection
@@ -48,6 +48,7 @@ Additionally, the following questions were explored:
 * 2 outliers were removed from the dataset. See figure below.
 * Categorical features were hot coded
 * Polynomial features were explored but they did not have high correlation with the target feature (sale price), and therefore, were not used in the final model.
+* The target feature, House Sale Price, was log transformed to make its distribution closer to normal.
 * For a detailed explanation of the cleaning steps for each features, see Jupyter notebook 01_data_collection_and_cleaning.ipynb
 
 ![](images/Fig1_outliers.png)
@@ -70,17 +71,14 @@ Exterior Quality|       0.604169
 Foundation|             0.537544
 Kitchen Quality|        0.540977
 
-The average house sale price for each neighborhood in Ames is shown below:
+The distribution of the size of the houses in Ames is shown below:
+![](images/Fig4_house_size_dist.png)
 
+The number of houses and their average sale price for each neighborhood in Ames is shown below:
 ![](images/Fig2_neighberhoods.png)
 
-The date when the house was built is an important factor for the house sale price as shown in the graph below.
-
-![](images/Fig3_year_built.png)
-
-As the number of rooms increases so does the sale price up to a point (i.e. 11 rooms). After that, the house sale price starts to decline.
-
-![](images/Fig4_rooms.png)
+This graph shows a cyclical pattern where the number of houses sold peaks in the summer months, and is low at the end/beginning of the year:
+![](images/Fig5_trend_MY_sold.png)
 
 ## Regression Modeling
 * This predictive analysis was conducted using multilinear regression.
@@ -99,9 +97,9 @@ As the number of rooms increases so does the sale price up to a point (i.e. 11 r
 
 | Model | R2 Score | MSE | RMSE |
 |---|---|---|---|
-|Baseline Model|-0.001|0.170|0.413|
+|Baseline Model (Sale price average)|-0.001|0.170|0.413|
 |Linear Regression|0.862|0.023|0.153|
-|Ridge CV|0.915|0.015|0.120|
+|Ridge CV|0.915|0.015|0.123|
 |Lasso CV|0.909|0.015|0.124|
 
 - A scatter plot of the residuals and the linear plot of the predicted vs actual values are shown below:
@@ -130,6 +128,9 @@ As the number of rooms increases so does the sale price up to a point (i.e. 11 r
 
 
 # Conclusions and Recommendations
-1. Homeowners can increase the values of their properties by improving the quality of their kitchen and/or exterior covering of the house
-2. Houses in these neighborhoods would be a good investment: Stone Brook, Northridge Heights, Northridge, Green Hills
-3. This model is automated to clean and process data, and choose the best predictors for house pricing, therefore it can be used in other cities.
+1. In general, the stronger predictors for a house price are: overall house quality, square footage of the house including basement and garage, year built/remodeled, number of rooms, type of foundation, and kitchen quality.
+2. There are 28 neighborhoods in Ames, Iowa. The average in house sale price in each neighborhood varies from $100,231 in Meadow Village to $329,675 in Stone Brook
+3. The number of houses sold in Ames, IA goes up in the summer and down in the winter.
+4. Homeowners can increase the values of their properties by improving the quality of their kitchen and/or exterior covering of the house
+5. Houses in these neighborhoods would be a good investment: Stone Brook, Northridge Heights, Northridge, Green Hills
+6. This model is automated to clean and process data, and choose the best predictors for house pricing, therefore it can be used in other cities.
