@@ -121,12 +121,6 @@ This graph shows a cyclical pattern where the number of houses sold peaks in the
 
 
 
-- The Lasso coefficient for each of the features is interpreted as:
-
- An increase in one standard deviation of 'Feature', means an increase by ‘coef_value’ of the sale price (holding the rest of the features constant.)
- Example: An increase in one standard deviation of Ground Living area, means an increase by $24,787.594384 of the sale price (holding the rest of the features constant.)
-
-
 # Conclusions and Recommendations
 1. In general, the stronger predictors for a house price are: overall house quality, square footage of the house including basement and garage, year built/remodeled, number of rooms, type of foundation, and kitchen quality.
 2. There are 28 neighborhoods in Ames, Iowa. The average in house sale price in each neighborhood varies from $100,231 in Meadow Village to $329,675 in Stone Brook
