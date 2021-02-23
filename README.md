@@ -93,8 +93,8 @@ This graph shows a cyclical pattern where the number of houses sold peaks in the
 
 ### Models evaluation:
 - R2 Score, Mean Square Error, and Root Mean Squared Error were calculated for all models. See below table.
-- All models scored higher than baseline
-- The Lasso CV regression model selected predicts 90% of the housing price variance.
+- All three models scored higher than baseline. They all had similar R-squared, MSE, and RMSE values
+- Applying regularization to the OLS model resulted in a decrease in the number of features used by the model. The Lasso CV regression model had the lowest number of features.
 
 | Model | R2 Score | MSE | RMSE | Number of Features
 |---|---|---|---|---|
