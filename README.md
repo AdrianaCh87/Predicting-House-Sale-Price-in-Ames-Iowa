@@ -3,6 +3,7 @@
 
 ## Table of Contents
 
+* [Executive Summary](#executive-summary)
 * [Problem Statement](#problem-statement)
 * [Data Collection](#data-collection)
 * [Data Cleaning and Preprocessing](#data-cleaning-and-Preprocessing)
@@ -11,17 +12,20 @@
 * [Results](#results)
 * [Conclusions and Recommendations](#conclusions-and-recommendations)
 
+## Executive summary
+An executive summary for this project is included [here](https://docs.google.com/document/d/1GCIDDshR-uh4fiQK0YoMwQYb89VQfxB9_7W2y-P1trg/edit?usp=sharing).
 
 This project was completed in Python using Jupyter notebooks. Below is the order of execution:
 
-01_data_collection_and_cleaning.ipynb
-02_exploratory_data_analysis.ipynb
-03_feature_engineering_and_preprocess.ipynb
-04_modeling_and_model_evaluation.ipynb
-05_production_model.ipynb
+- 01_data_collection_and_cleaning.ipynb
+- 02_exploratory_data_analysis.ipynb
+- 03_feature_engineering_and_preprocess.ipynb
+- 04_modeling_and_model_evaluation.ipynb
+- 05_production_model.ipynb
 
 ## Problem Statement
 To create a regression model to predict the sale price of a house in Ames, Iowa.
+This model must have an R-squared score better than baseline (average of all house prices) and have less than 100 predictors (house features)
 
 Additionally, the following questions were explored:
 
@@ -44,9 +48,12 @@ Additionally, the following questions were explored:
 * 2 data points were removed from the dataset because they had null values for some features.
 * 2 outliers were removed from the dataset. See figure below.
 * Categorical features were hot coded
-* Polynomial features were explored but they did not have high correlation with the target feature (sale price), and therefore, were not used in the final model.
 * The target feature, House Sale Price, was log transformed to make its distribution closer to normal.
 * For a detailed explanation of the cleaning steps for each features, see Jupyter notebook 01_data_collection_and_cleaning.ipynb
+
+Data Assumptions:
+- Null values and outliers found in dataset are random
+- Variables have a linear relationship to target. The assumptions for Linearity, Independence, Normality, and Equal Variance were checked and they are met.
 
 ![](images/Fig1_outliers.png)
 
@@ -78,26 +85,23 @@ This graph shows a cyclical pattern where the number of houses sold peaks in the
 ![](images/Fig5_trend_MY_sold.png)
 
 ## Regression Modeling
-* This predictive analysis was conducted using multilinear regression.
 * Two types of regression techniques were completed and compared: OLS and Regularized Regression (Lasso and Ridge)
 * Data was split for training (75%) and testing (25%).
 * The performance of models was evaluated by building multiple combination models using a pipeline. 5-folds were used for each combination.
-* Regularization was used to shrink the data values
-* The hyperparameters for each model were tuned in using grid search.
+* Regularization was used to address the high-variance in the OLS model (too many features)
 * The Lasso regression model was selected to help with the high levels of multicollinearity in the data, and to automate the feature selection.
-* The Lasso CV linear regression model was used to iterate over the alphas. Cross-validation was used to select the best model.
 
 ### Models evaluation:
 - R2 Score, Mean Square Error, and Root Mean Squared Error were calculated for all models. See below table.
 - All models scored higher than baseline
 - The Lasso CV regression model selected predicts 90% of the housing price variance.
 
-| Model | R2 Score | MSE | RMSE |
-|---|---|---|---|
-|Baseline Model (Sale price average)|-0.001|0.170|0.413|
-|Linear Regression|0.862|0.023|0.153|
-|Ridge CV|0.915|0.015|0.123|
-|Lasso CV|0.909|0.015|0.124|
+| Model | R2 Score | MSE | RMSE | Number of Features
+|---|---|---|---|---|
+|Baseline Model (Sale price average)|-0.0006|6483655812.06|80521.15|202
+|Linear Regression|0.912|568191829.82|23836.77|202
+|Ridge CV|0.916|545455141.84|23354.98|199
+|Lasso CV|0.911|575703610.53|23993.82|58
 
 - A scatter plot of the residuals and the linear plot of the predicted vs actual values are shown below:
 
@@ -108,7 +112,7 @@ This graph shows a cyclical pattern where the number of houses sold peaks in the
 ![](images/Fig11_lasso_eval.png)
 
 
-- The coefficients for each of the three models is shown below:
+- The most important features for each of the three models is shown below:
 
 ![](images/Fig8_lr_coeffs.png)
 
@@ -124,4 +128,4 @@ This graph shows a cyclical pattern where the number of houses sold peaks in the
 3. The number of houses sold in Ames, IA goes up in the summer and down in the winter.
 4. Homeowners can increase the values of their properties by improving the quality of their kitchen and/or exterior covering of the house
 5. Houses in these neighborhoods would be a good investment: Stone Brook, Northridge Heights, Northridge, Green Hills
-6. This model is automated to clean and process data, and choose the best predictors for house pricing, therefore it can be used in other cities.
+6. A production model was completed to automate the cleaning, pre-processing and modeling steps for any dataset. This can be used to try this model in the future and in other cities.
